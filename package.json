@@ -1,27 +1,44 @@
 {
   "name": "dropalink",
-  "private": true,
+  "version": "0.4.0",
+  "description": "A monorepo template built with Bun, Hono, Vite, and React",
+  "author": "Steve Simkins",
+  "license": "MIT",
+  "homepage": "https://github.com/stevedylandev/bhvr",
+  "packageManager": "bun@1.2.4",
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "./server",
+    "./client",
+    "./shared"
   ],
   "scripts": {
-    "check": "biome check --write .",
     "dev": "turbo dev",
+    "dev:client": "turbo dev --filter=client",
+    "dev:server": "turbo dev --filter=server",
     "build": "turbo build",
-    "check-types": "turbo check-types",
-    "dev:native": "turbo -F native dev",
-    "dev:web": "turbo -F web dev",
-    "dev:server": "turbo -F server dev",
-    "db:push": "turbo -F server db:push",
-    "db:studio": "turbo -F server db:studio",
-    "db:generate": "turbo -F server db:generate",
-    "db:migrate": "turbo -F server db:migrate"
+    "build:client": "turbo build --filter=client",
+    "build:server": "turbo build --filter=server",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "postinstall": "turbo build --filter=shared --filter=server"
   },
-  "dependencies": {},
+  "keywords": [
+    "bun",
+    "hono",
+    "react",
+    "vite",
+    "monorepo",
+    "turbo"
+  ],
   "devDependencies": {
-    "turbo": "^2.5.4",
-    "@biomejs/biome": "^2.1.2"
+    "bun-types": "latest",
+    "turbo": "^2.5.5"
   },
-  "packageManager": "bun@1.2.12"
+  "peerDependencies": {
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "hono": "^4.8.12"
+  }
 }
