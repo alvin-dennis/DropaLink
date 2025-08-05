@@ -1,0 +1,6 @@
+{
+  "name": "dropalink-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-02-13",
+  "compatibility_flags": ["nodejs_compat"]
+}
