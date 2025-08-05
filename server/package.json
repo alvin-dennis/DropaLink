@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20250805.0",
+    "@hono/swagger-ui": "^0.5.2",
     "@supabase/supabase-js": "^2.53.0",
     "@upstash/redis": "^1.35.3",
     "hono": "^4.7.11",
-    "shared": "workspace:*"
+    "shared": "workspace:*",
+    "zod": "^4.0.14",
+    "zod-validation-error": "^4.0.1"
   },
   "devDependencies": {
     "@types/bun": "latest"
