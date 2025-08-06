@@ -1,2 +1,11 @@
-node_modules
+node_modules/
+.env*
 .turbo
+
+# Security - Additional sensitive files
+*.key
+*.pem
+*.p12
+*.pfx
+.dev.vars
+.wrangler/
