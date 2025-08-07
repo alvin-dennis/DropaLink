@@ -31,7 +31,6 @@ export const appRouter = {
       };
     }),
 
-    // Login user
     login: publicProcedure
       .input(loginSchema)
       .handler(async ({ input, context: _context }) => {
@@ -54,7 +53,6 @@ export const appRouter = {
         };
       }),
 
-    // Register user
     register: publicProcedure
       .input(registerSchema)
       .handler(async ({ input, context: _context }) => {
@@ -77,14 +75,12 @@ export const appRouter = {
         };
       }),
 
-    // Logout user
     logout: publicProcedure.handler(async ({ context: _context }) => {
       return {
         message: "Logout - implement with Supabase auth",
       };
     }),
 
-    // OAuth callback
     callback: publicProcedure
       .input(callbackSchema)
       .handler(async ({ input, context: _context }) => {
