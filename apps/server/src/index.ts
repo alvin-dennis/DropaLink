@@ -11,6 +11,8 @@ import { timing } from "hono/timing";
 import { env } from "./config/env";
 
 import errorHandler from "./middleware/error.middleware";
+import authRoutes from "./routes/auth.routes";
+import dashboardRoutes from "./routes/dashboard.routes";
 
 const app = new Hono();
 
@@ -19,10 +21,10 @@ app.use(
   "/*",
   cors({
     origin: env.CORS_ORIGIN || "",
-    allowMethods: ["GET", "POST", "OPTIONS"],
+    allowMethods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"],
   })
 );
-app.use("/*", csrf({}));
+app.use("/*", csrf({ origin: env.CORS_ORIGIN || "" }));
 app.use("/*", secureHeaders());
 app.use("/*", timing());
 app.use("/*", prettyJSON());
@@ -42,8 +44,16 @@ app.use("/rpc/*", async (c, next) => {
 });
 
 app.get("/", (c) => {
-  return c.text("OK");
+  return c.text("DropaLink Server is running");
 });
+app.get("/health", (c) => {
+  return c.json({ status: "Running", timestamp: new Date().toLocaleString() });
+});
+
+
+app.route("/auth", authRoutes);
+app.route("/dashboard", dashboardRoutes);
+
 app.onError(errorHandler);
 
 export default app;

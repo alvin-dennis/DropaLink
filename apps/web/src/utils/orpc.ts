@@ -3,7 +3,7 @@ import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import type { appRouter } from "../../../server/src/routes/Iindex";
+import type { appRouter } from "../../../server/src/lib/route";
 import type { RouterClient } from "@orpc/server";
 
 export const queryClient = new QueryClient({
