@@ -1,114 +1,162 @@
-import { Hono } from "hono";
-import { userSupabaseMiddleware } from "../middleware/auth.middleware";
+import { publicProcedure } from "../lib/orpc";
+import { ORPCError } from "@orpc/server";
+import { z } from "zod";
 
-const authRoutes = new Hono();
-
-authRoutes.use(userSupabaseMiddleware());
-
-authRoutes.get("/user", async (c) => {
-  const userSupabase = c.get("userSupabase");
-  const { data, error } = await userSupabase.auth.getUser();
-  if (error) {
-    return c.json({ error: error.message }, 400);
-  }
-  return c.json(data);
+const loginSchema = z.object({
+  email: z.string().email().optional(),
+  password: z.string().min(1).optional(),
+  provider: z.enum(["google", "email"]).optional(),
 });
 
-authRoutes.post("/logout", async (c) => {
-  const userSupabase = c.get("userSupabase");
-  const { error } = await userSupabase.auth.signOut();
-  if (error) {
-    return c.json({ error: error.message }, 400);
-  }
-  return c.json({ message: "Logged out successfully" });
+const registerSchema = z.object({
+  email: z.string().email().optional(),
+  password: z.string().min(6).optional(),
+  provider: z.enum(["google", "email"]).optional(),
 });
 
-authRoutes.post("/login", async (c) => {
-  const userSupabase = c.get("userSupabase");
-  const { email, password, provider } = await c.req.json();
-  if (provider === "google") {
-    const { data, error } = await userSupabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${
-          c.req.header("origin") || "http://localhost:3000"
-        }/auth/callback`,
-      },
-    });
+const callbackSchema = z.object({
+  code: z.string().optional(),
+  error: z.string().optional(),
+});
+
+export const authRoutes = {
+  getUser: publicProcedure.handler(async ({ context }) => {
+    const { userSupabase } = context;
+    const { data, error } = await userSupabase.auth.getUser();
     if (error) {
-      return c.json({ error: error.message }, 400);
+      throw new ORPCError("BAD_REQUEST", {
+        message: error.message,
+      });
     }
-    return c.json({ url: data.url });
-  }
-  if (!email || !password) {
-    return c.json({ error: "Email and password are required" }, 400);
-  }
+    return data;
+  }),
 
-  const { data, error } = await userSupabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    return c.json({ error: error.message }, 400);
-  }
-
-  return c.json(data);
-});
-
-authRoutes.post("/register", async (c) => {
-  const userSupabase = c.get("userSupabase");
-  const { email, password, provider } = await c.req.json();
-  if (provider === "google") {
-    const { data, error } = await userSupabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${
-          c.req.header("origin") || "http://localhost:3000"
-        }/auth/callback`,
-      },
-    });
-
+  logout: publicProcedure.handler(async ({ context }) => {
+    const { userSupabase } = context;
+    const { error } = await userSupabase.auth.signOut();
     if (error) {
-      return c.json({ error: error.message }, 400);
+      throw new ORPCError("BAD_REQUEST", {
+        message: error.message,
+      });
     }
+    return { message: "Logged out successfully" };
+  }),
 
-    return c.json({ url: data.url });
-  }
-  if (!email || !password) {
-    return c.json({ error: "Email and password are required" }, 400);
-  }
-  const { data, error } = await userSupabase.auth.signUp({
-    email,
-    password,
-  });
-  if (error) {
-    return c.json({ error: error.message }, 400);
-  }
-  return c.json(data);
-});
+  login: publicProcedure
+    .input(loginSchema)
+    .handler(async ({ input, context }) => {
+      const { userSupabase, honoContext } = context;
+      const { email, password, provider } = input;
 
-authRoutes.get("/callback", async (c) => {
-  const userSupabase = c.get("userSupabase");
-  const code = c.req.query("code");
-  const error = c.req.query("error");
+      if (provider === "google") {
+        const { data, error } = await userSupabase.auth.signInWithOAuth({
+          provider: "google",
+          options: {
+            redirectTo: `${
+              honoContext.req.header("origin") || "http://localhost:3000"
+            }/auth/callback`,
+          },
+        });
+        if (error) {
+          throw new ORPCError("BAD_REQUEST", {
+            message: error.message,
+          });
+        }
+        return { url: data.url };
+      }
 
-  if (error) {
-    return c.json({ error: error }, 400);
-  }
+      if (!email || !password) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: "Email and password are required",
+        });
+      }
 
-  if (!code) {
-    return c.json({ error: "Authorization code is required" }, 400);
-  }
+      const { data, error } = await userSupabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-  const { data, error: authError } =
-    await userSupabase.auth.exchangeCodeForSession(code);
+      if (error) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: error.message,
+        });
+      }
 
-  if (authError) {
-    return c.json({ error: authError.message }, 400);
-  }
+      return data;
+    }),
 
-  return c.json(data);
-});
+  register: publicProcedure
+    .input(registerSchema)
+    .handler(async ({ input, context }) => {
+      const { userSupabase, honoContext } = context;
+      const { email, password, provider } = input;
 
-export default authRoutes;
+      if (provider === "google") {
+        const { data, error } = await userSupabase.auth.signInWithOAuth({
+          provider: "google",
+          options: {
+            redirectTo: `${
+              honoContext.req.header("origin") || "http://localhost:3000"
+            }/auth/callback`,
+          },
+        });
+
+        if (error) {
+          throw new ORPCError("BAD_REQUEST", {
+            message: error.message,
+          });
+        }
+
+        return { url: data.url };
+      }
+
+      if (!email || !password) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: "Email and password are required",
+        });
+      }
+
+      const { data, error } = await userSupabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: error.message,
+        });
+      }
+
+      return data;
+    }),
+
+  callback: publicProcedure
+    .input(callbackSchema)
+    .handler(async ({ input, context }) => {
+      const { userSupabase } = context;
+      const { code, error } = input;
+
+      if (error) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: error,
+        });
+      }
+
+      if (!code) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: "Authorization code is required",
+        });
+      }
+
+      const { data, error: authError } =
+        await userSupabase.auth.exchangeCodeForSession(code);
+
+      if (authError) {
+        throw new ORPCError("BAD_REQUEST", {
+          message: authError.message,
+        });
+      }
+
+      return data;
+    }),
+};

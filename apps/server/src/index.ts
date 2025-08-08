@@ -11,8 +11,6 @@ import { timing } from "hono/timing";
 import { env } from "./config/env";
 
 import errorHandler from "./middleware/error.middleware";
-import authRoutes from "./routes/auth.routes";
-import dashboardRoutes from "./routes/dashboard.routes";
 
 const app = new Hono();
 
@@ -49,10 +47,6 @@ app.get("/", (c) => {
 app.get("/health", (c) => {
   return c.json({ status: "Running", timestamp: new Date().toLocaleString() });
 });
-
-
-app.route("/auth", authRoutes);
-app.route("/dashboard", dashboardRoutes);
 
 app.onError(errorHandler);
 
