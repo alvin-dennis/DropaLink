@@ -1,6 +1,6 @@
 import { authRoutes } from "../routes/auth.routes";
 import { dashboardRoutes } from "../routes/dashboard.routes";
-import { publicProcedure } from "./orpc";
+import { publicProcedure, protectedProcedure } from "./orpc";
 
 const appRouter = {
   healthCheck: publicProcedure.handler(() => {
@@ -8,7 +8,7 @@ const appRouter = {
   }),
 
   auth: authRoutes,
-  dashboard: dashboardRoutes,
+  dashboard: protectedProcedure.router(dashboardRoutes),
 };
 
 export { appRouter };

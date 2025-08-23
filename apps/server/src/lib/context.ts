@@ -1,7 +1,7 @@
 import type { Context as HonoContext } from "hono";
 import { createServerClient, parseCookieHeader } from "@supabase/ssr";
 import { supabase } from "./supabase";
-import { env  } from "../config/env";
+import { env } from "../config/env";
 import { setCookie } from "hono/cookie";
 
 export type CreateContextOptions = {
@@ -37,8 +37,10 @@ export async function createContext({ context }: CreateContextOptions) {
     }
   );
 
+  const { data } = await userSupabase.auth.getSession();
+
   return {
-    session: null,
+    session: data.session,
     supabase,
     userSupabase,
     honoContext: context,
