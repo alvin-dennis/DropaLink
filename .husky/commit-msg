@@ -1,0 +1,25 @@
+#!/bin/sh
+# Validate commit message format
+
+echo "📝 Validating commit message..."
+
+bunx --no -- commitlint --edit "$1"
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ Commit message does not follow Conventional Commits format."
+  echo ""
+  echo "📖 Expected format: <type>(<scope>): <subject>"
+  echo ""
+  echo "📌 Valid types: feat, fix, docs, style, refactor, perf, test, chore, revert, build, ci"
+  echo ""
+  echo "📚 Examples:"
+  echo "  feat: add user authentication"
+  echo "  fix(api): resolve null pointer exception"
+  echo "  docs: update README installation steps"
+  echo ""
+  echo "🔗 Learn more: https://www.conventionalcommits.org/"
+  exit 1
+fi
+
+echo "✅ Commit message validated!"

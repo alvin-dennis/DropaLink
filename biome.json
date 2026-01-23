@@ -1,67 +1,67 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
-	"vcs": {
-		"enabled": false,
-		"clientKind": "git",
-		"useIgnoreFile": false
-	},
-	"files": {
-		"ignoreUnknown": false,
-		"includes": [
-			"**",
-			"!**/.next",
-			"!**/dist",
-			"!**/.turbo",
-			"!**/dev-dist",
-			"!**/.zed",
-			"!**/.vscode",
-			"!**/routeTree.gen.ts",
-			"!**/src-tauri",
-			"!**/.nuxt",
-			"!bts.jsonc",
-			"!**/.expo",
-			"!**/.wrangler",
-			"!**/.source"
-		]
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab"
-	},
-	"assist": { "actions": { "source": { "organizeImports": "on" } } },
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"correctness": {
-				"useExhaustiveDependencies": "info"
-			},
-			"nursery": {
-				"useSortedClasses": {
-					"level": "warn",
-					"fix": "safe",
-					"options": {
-						"functions": ["clsx", "cva", "cn"]
-					}
-				}
-			},
-			"style": {
-				"noParameterAssign": "error",
-				"useAsConstAssertion": "error",
-				"useDefaultParameterLast": "error",
-				"useEnumInitializers": "error",
-				"useSelfClosingElements": "error",
-				"useSingleVarDeclarator": "error",
-				"noUnusedTemplateLiteral": "error",
-				"useNumberNamespace": "error",
-				"noInferrableTypes": "error",
-				"noUselessElse": "error"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double"
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.mjs", "**/*.json"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noStaticElementInteractions": "warn",
+        "useKeyWithClickEvents": "warn",
+        "noSvgWithoutTitle": "warn",
+        "useButtonType": "warn",
+        "noRedundantRoles": "warn",
+        "useSemanticElements": "warn",
+        "noLabelWithoutControl": "warn"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "warn",
+        "useIterableCallbackReturn": "warn"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "warn"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "warn"
+      },
+      "style": {
+        "noNonNullAssertion": "warn"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["src/lib/env/**"],
+      "linter": {
+        "enabled": true
+      }
+    }
+  ],
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
 }

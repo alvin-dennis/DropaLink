@@ -1,0 +1,23 @@
+#!/bin/sh
+# Production-grade pre-commit hook
+
+echo "🔍 Running pre-commit checks..."
+
+# Enforce bun as package manager
+if [ -f "package-lock.json" ] || [ -f "yarn.lock" ] || [ -f "pnpm-lock.yaml" ]; then
+  echo "❌ ERROR: Wrong package manager detected!"
+  echo "This project uses bun. Please remove package-lock.json, yarn.lock, or pnpm-lock.yaml"
+  echo "and use 'bun install' instead."
+  exit 1
+fi
+
+# Run lint-staged for staged files
+bunx lint-staged
+
+# If lint-staged fails, abort commit
+if [ $? -ne 0 ]; then
+  echo "❌ Lint-staged failed. Please fix the errors above."
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"

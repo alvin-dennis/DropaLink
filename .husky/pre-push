@@ -1,0 +1,22 @@
+#!/bin/sh
+# Production-grade pre-push hook
+
+echo "🚀 Running pre-push checks..."
+
+# Run TypeScript type checking
+echo "📝 Running type check..."
+bun run typecheck
+if [ $? -ne 0 ]; then
+  echo "❌ TypeScript type check failed. Please fix type errors before pushing."
+  exit 1
+fi
+
+# Run full lint check (not just staged files)
+echo "🔍 Running lint check..."
+bunx biome check .
+if [ $? -ne 0 ]; then
+  echo "❌ Lint check failed. Please fix lint errors before pushing."
+  exit 1
+fi
+
+echo "✅ Pre-push checks passed!"

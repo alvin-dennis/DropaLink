@@ -1,0 +1,24 @@
+#!/bin/sh
+# Enforce bun as the only package manager
+
+if [ "$(basename "$0")" = "npm" ] || [ "$(basename "$0")" = "yarn" ] || [ "$(basename "$0")" = "pnpm" ]; then
+  echo "❌ ERROR: This project uses bun as the package manager."
+  echo "Please use 'bun' instead of npm, yarn, or pnpm."
+  exit 1
+fi
+
+# Check for wrong lock files
+if [ -f "package-lock.json" ]; then
+  echo "❌ ERROR: package-lock.json detected. Please remove it and use 'bun install'."
+  exit 1
+fi
+
+if [ -f "yarn.lock" ]; then
+  echo "❌ ERROR: yarn.lock detected. Please remove it and use 'bun install'."
+  exit 1
+fi
+
+if [ -f "pnpm-lock.yaml" ]; then
+  echo "❌ ERROR: pnpm-lock.yaml detected. Please remove it and use 'bun install'."
+  exit 1
+fi
