@@ -1,109 +1,202 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# DropaLink
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+> A modern, minimal link-sharing platform for private, one-time, and expiring links — giving you complete control over how, when, and who views your content.
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+## 🚀 Quick Start
 
-## Features
+### Prerequisites
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Proxy
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Password-based authentication block installed via the [Supabase UI Library](https://supabase.com/ui/docs/nextjs/password-based-auth)
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+- **Node.js** 18.17+
+- **bun** 8.0+ ([Install](https://bun.io/installation))
 
-## Demo
+### Setup
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+```bash
+# Clone repository
+git clone https://github.com/alvin-dennis/DropaLink.git
+cd DropaLink
 
-## Deploy to Vercel
+# Install dependencies
+bun install
 
-Vercel deployment will guide you through creating a Supabase account and project.
+# Configure environment
+cp .env.example .env
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+# Start development server
+bun dev
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+## 📦 Available Commands
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+### Development
 
-## Clone and run locally
+```bash
+# Start development server with hot reload
+bun dev
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+```
 
-2. Create a Next.js app using the Supabase Starter template npx command
+### Building & Deployment
 
-   ```bash
-   npx create-next-app --example with-supabase with-supabase-app
-   ```
+```bash
+# Create production build
+bun build
 
-   ```bash
-   yarn create next-app --example with-supabase with-supabase-app
-   ```
+# Start production server
+bun start
 
-   ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
-   ```
+# Build and start
+bun build && bun start
+```
 
-3. Use `cd` to change into the app's directory
+### Code Quality
 
-   ```bash
-   cd with-supabase-app
-   ```
+```bash
+# Run Biome linter
+bun lint
 
-4. Rename `.env.example` to `.env.local` and update the following:
+# Fix linting issues automatically
+bun lint:fix
 
-  ```env
-  NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=[INSERT SUPABASE PROJECT API PUBLISHABLE OR ANON KEY]
-  ```
-  > [!NOTE]
-  > This example uses `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, which refers to Supabase's new **publishable** key format.
-  > Both legacy **anon** keys and new **publishable** keys can be used with this variable name during the transition period. Supabase's dashboard may show `NEXT_PUBLIC_SUPABASE_ANON_KEY`; its value can be used in this example.
-  > See the [full announcement](https://github.com/orgs/supabase/discussions/29260) for more information.
+# Format code with Biome
+bun format
 
-  Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` can be found in [your Supabase project's API settings](https://supabase.com/dashboard/project/_?showConnect=true)
+# Run all checks
+bun validate
+```
 
-5. You can now run the Next.js local development server:
+### Type Checking
 
-   ```bash
-   npm run dev
-   ```
+```bash
+# Check TypeScript types
+bun typecheck
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+# Alias
+bun type-check
+```
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+### Maintenance
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+```bash
+# Clean build artifacts
+bun clean
 
-## Feedback and issues
+# Install git hooks
+bun prepare
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+# Install dependencies
+bun install
+```
 
-## More Supabase examples
+---
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+## ⚙️ Configuration
+
+### Environment Variables
+
+Create `.env.local` in project root:
+
+```env
+NODE_ENV=development
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-or-anon-key
+
+```
+
+## 👨‍💻 Development
+
+### Quality Checks
+
+**Before Committing**
+
+```bash
+# Run full validation
+bun validate
+
+# Fix auto-fixable issues
+bun lint:fix
+bun format
+
+# Type check
+bun typecheck
+```
+
+**Git Hooks (Husky)**
+
+- Pre-commit: Runs linting on changed files
+- Commit-msg: Validates conventional commit format
+
+**Commit Message Format**
+
+```
+feat: add new feature
+fix: fix a bug
+docs: update documentation
+style: format code
+refactor: refactor code structure
+perf: improve performance
+test: add tests
+chore: update dependencies
+```
+
+---
+
+### Environment for Production
+
+```env
+NODE_ENV=production
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-or-anon-key
+```
+
+---
+
+## 🤝 Contributing
+
+### Workflow
+
+1. Fork repository
+2. Create feature branch: `git checkout -b feat/amazing-feature`
+3. Make changes following code style
+4. Run `bun validate`
+5. Commit: `git commit -m "feat: add amazing feature"`
+6. Push: `git push origin feat/amazing-feature`
+7. Create Pull Request
+
+### Before Submitting
+
+```bash
+# Validate everything
+bun validate
+
+# Fix issues
+bun lint:fix
+bun format
+
+# Type check
+bun typecheck
+
+# Build test
+bun build
+```
+
+### Commit Convention
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+type(scope): subject
+
+feat(menu): add digital menu feature
+fix(api): resolve timeout issue
+docs: update installation guide
+style: format code
+refactor(hooks): extract logic
+perf: optimize images
+test(form): add validation tests
+chore(deps): update dependencies
+```
+
+---
