@@ -1,11 +1,11 @@
 import { Link2, ShieldCheck, Timer, Users } from "lucide-react";
-import { redirect } from "next/navigation";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
-import { getProfileDisplayName, getProfileInitials } from "@/lib/profile";
+import { redirect } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getProfileDisplayName, getProfileInitials } from "@/lib/profile";
+import { createClient } from "@/lib/supabase/server";
 
 async function getUser() {
   const supabase = await createClient();
@@ -31,17 +31,13 @@ export default async function ProtectedPage() {
           </Badge>
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h1 className="font-display text-3xl md:text-4xl">
-                Hi, {displayName}
-              </h1>
+              <h1 className="font-display text-3xl md:text-4xl">Hi, {displayName}</h1>
               <p className="text-sm text-muted-foreground">
                 Here&apos;s what is happening with your active drops.
               </p>
             </div>
             <Button asChild size="lg">
-              <Link href="/dashboard">
-                Create new drop
-              </Link>
+              <Link href="/dashboard">Create new drop</Link>
             </Button>
           </div>
         </CardHeader>

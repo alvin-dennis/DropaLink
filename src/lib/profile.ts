@@ -23,7 +23,7 @@ export function getProfileDisplayName(claims?: Claims) {
 }
 
 export function getProfileInitials(name?: string, email?: string) {
-  const base = name && name !== "there" ? name : email ?? "";
+  const base = name && name !== "there" ? name : (email ?? "");
   if (!base) {
     return "DL";
   }

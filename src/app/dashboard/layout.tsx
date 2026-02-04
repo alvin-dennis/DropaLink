@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Crown } from "lucide-react";
+import Link from "next/link";
 import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
 import { ProfileMenu } from "@/components/dashboard/profile-menu";

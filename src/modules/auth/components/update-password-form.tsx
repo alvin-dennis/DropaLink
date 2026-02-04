@@ -76,7 +76,12 @@ export function UpdatePasswordForm() {
               )}
             />
 
-            <Button type="submit" className="w-full" size="lg" disabled={updatePasswordMutation.isPending}>
+            <Button
+              type="submit"
+              className="w-full"
+              size="lg"
+              disabled={updatePasswordMutation.isPending}
+            >
               {updatePasswordMutation.isPending ? "Updating..." : "Update Password"}
             </Button>
           </form>

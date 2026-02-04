@@ -92,7 +92,12 @@ export function SignupForm() {
                   )}
                 />
 
-                <Button type="submit" className="w-full" size="lg" disabled={signupMutation.isPending}>
+                <Button
+                  type="submit"
+                  className="w-full"
+                  size="lg"
+                  disabled={signupMutation.isPending}
+                >
                   {signupMutation.isPending ? "Signing up..." : "Sign Up"}
                 </Button>
               </form>

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Lock, Timer, Zap } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -14,7 +14,11 @@ const stats = [
 
 const features = [
   { icon: Lock, title: "Private drops", text: "One-time access and viewer limits built in." },
-  { icon: Timer, title: "Auto-expire", text: "Set minutes, hours, or days with no manual cleanup." },
+  {
+    icon: Timer,
+    title: "Auto-expire",
+    text: "Set minutes, hours, or days with no manual cleanup.",
+  },
   { icon: Zap, title: "Instant revoke", text: "Kill a link immediately with a single toggle." },
 ];
 
@@ -74,7 +78,9 @@ export function LandingHero() {
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.08 }}
                 className="glass-panel rounded-2xl px-4 py-3"
               >
-                <p className="text-xs uppercase tracking-wide text-muted-foreground">{stat.label}</p>
+                <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                  {stat.label}
+                </p>
                 <p className="text-lg font-semibold">{stat.value}</p>
               </motion.div>
             ))}

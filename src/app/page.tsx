@@ -1,6 +1,6 @@
+import { ArrowUpRight, CheckCircle2, Crown, Shield, Sparkles, Timer } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
-import { ArrowUpRight, CheckCircle2, Crown, Shield, Sparkles, Timer } from "lucide-react";
 import { AuthButton } from "@/components/auth-button";
 import { LandingHero } from "@/components/landing/landing-hero";
 import { Badge } from "@/components/ui/badge";

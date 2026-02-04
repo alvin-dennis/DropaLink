@@ -1,5 +1,5 @@
-import { AuthShell } from "@/modules/auth/components/auth-shell";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AuthShell } from "@/modules/auth/components/auth-shell";
 
 export default function Page() {
   return (

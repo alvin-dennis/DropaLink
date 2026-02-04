@@ -62,7 +62,12 @@ export function ForgotPasswordForm() {
                 )}
               />
 
-              <Button type="submit" className="w-full" size="lg" disabled={resetPasswordMutation.isPending}>
+              <Button
+                type="submit"
+                className="w-full"
+                size="lg"
+                disabled={resetPasswordMutation.isPending}
+              >
                 {resetPasswordMutation.isPending ? "Sending..." : "Send Reset Link"}
               </Button>
             </form>

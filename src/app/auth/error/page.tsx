@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { AuthShell } from "@/modules/auth/components/auth-shell";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AuthShell } from "@/modules/auth/components/auth-shell";
 
 async function ErrorContent({ searchParams }: { searchParams: Promise<{ error: string }> }) {
   const params = await searchParams;

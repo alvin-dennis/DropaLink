@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Crown, ShieldCheck, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
 export function AuthShell({ children }: { children: React.ReactNode }) {
