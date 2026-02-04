@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Bricolage_Grotesque, Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import "@/app/globals.css";
@@ -7,7 +7,7 @@ import { QueryProvider } from "@/components/providers/query-provider";
 
 export const metadata: Metadata = {
   title: "Dropalink",
-  description: "Dropalink - The fastest way to build apps with Next.js and Supabase",
+  description: "DropaLink - Private, one-time, and expiring links with full control.",
 };
 
 const geistSans = Geist({
@@ -16,9 +16,19 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const displayFont = Bricolage_Grotesque({
+  variable: "--font-display",
+  display: "swap",
+  subsets: ["latin"],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={geistSans.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${displayFont.variable}`}
+    >
       <body className="min-h-screen bg-background font-sans antialiased">
         <ThemeProvider
           attribute="class"
