@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -32,43 +33,48 @@ export function ForgotPasswordForm() {
   };
 
   return (
-    <div className="space-y-4 w-full max-w-sm mx-auto p-4 border rounded-md shadow-sm">
-      <h2 className="text-2xl font-bold text-center">Reset Password</h2>
-      <AuthErrorMessage error={resetPasswordMutation.error} />
+    <Card className="glass-panel">
+      <CardHeader className="space-y-2">
+        <CardTitle className="text-2xl">Reset password</CardTitle>
+        <CardDescription>We will send you a secure reset link.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-5">
+        <AuthErrorMessage error={resetPasswordMutation.error} />
 
-      {resetPasswordMutation.isSuccess ? (
-        <div className="text-green-600 text-center p-4 border border-green-200 rounded">
-          Check your email for the password reset link.
+        {resetPasswordMutation.isSuccess ? (
+          <div className="rounded-xl border border-border/60 bg-secondary/60 p-4 text-center text-sm text-foreground">
+            Check your email for the password reset link.
+          </div>
+        ) : (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="email@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button type="submit" className="w-full" size="lg" disabled={resetPasswordMutation.isPending}>
+                {resetPasswordMutation.isPending ? "Sending..." : "Send Reset Link"}
+              </Button>
+            </form>
+          </Form>
+        )}
+
+        <div className="text-center text-sm text-muted-foreground">
+          <Link href="/auth/login" className="font-medium text-foreground hover:underline">
+            Back to Login
+          </Link>
         </div>
-      ) : (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="email@example.com" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Button type="submit" className="w-full" disabled={resetPasswordMutation.isPending}>
-              {resetPasswordMutation.isPending ? "Sending..." : "Send Reset Link"}
-            </Button>
-          </form>
-        </Form>
-      )}
-
-      <div className="text-center text-sm">
-        <Link href="/auth/login" className="text-blue-500 hover:underline">
-          Back to Login
-        </Link>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

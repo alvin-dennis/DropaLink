@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useGoogleLogin } from "../hooks/use-google-login";
+import { SiGoogle } from "react-icons/si";
+import { Button } from "@/components/ui/button";
 
 export function GoogleButton() {
   const googleLoginMutation = useGoogleLogin();
@@ -10,11 +11,12 @@ export function GoogleButton() {
     <Button
       variant="outline"
       type="button"
-      className="w-full"
+      className="w-full gap-2"
       onClick={() => googleLoginMutation.mutate()}
       disabled={googleLoginMutation.isPending}
     >
-      {googleLoginMutation.isPending ? "Redirecting..." : "Sign in with Google"}
+      <SiGoogle className="h-4 w-4" />
+      {googleLoginMutation.isPending ? "Redirecting..." : "Continue with Google"}
     </Button>
   );
 }

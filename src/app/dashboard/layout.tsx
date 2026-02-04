@@ -1,35 +1,54 @@
 import Link from "next/link";
+import { Crown } from "lucide-react";
 import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
+import { ProfileMenu } from "@/components/dashboard/profile-menu";
+import { Badge } from "@/components/ui/badge";
+import { getProfileDisplayName, getProfileInitials } from "@/lib/profile";
+import { createClient } from "@/lib/supabase/server";
 
-export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
+export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims;
+  const profileName = getProfileDisplayName(user);
+  const profileInitials = getProfileInitials(profileName, user?.email);
+
   return (
-    <main className="min-h-screen flex flex-col items-center">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-            <div className="flex gap-5 items-center font-semibold">
-              <Link href={"/"}>Next.js Supabase Starter</Link>
+    <main className="bg-dashboard min-h-screen">
+      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col">
+        <nav className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur">
+          <div className="flex h-16 w-full items-center justify-between px-6 text-sm">
+            <div className="flex items-center gap-3 font-semibold">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Crown className="h-4 w-4" />
+              </div>
+              <div className="flex items-center gap-3">
+                <Link href="/" className="font-display text-base">
+                  DropaLink
+                </Link>
+                <Badge variant="secondary" className="hidden md:inline-flex">
+                  Dashboard
+                </Badge>
+              </div>
             </div>
-            <Suspense>
-              <AuthButton />
-            </Suspense>
+            {user ? (
+              <ProfileMenu name={profileName} email={user.email} initials={profileInitials} />
+            ) : (
+              <Suspense>
+                <AuthButton />
+              </Suspense>
+            )}
           </div>
         </nav>
-        <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">{children}</div>
 
-        <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Supabase
-            </a>
-          </p>
+        <div className="flex-1 px-6 pb-16 pt-10">{children}</div>
+
+        <footer className="border-t border-border/60">
+          <div className="flex flex-col gap-2 px-6 py-10 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+            <p>DropaLink Dashboard</p>
+            <p>Private sharing with full control.</p>
+          </div>
         </footer>
       </div>
     </main>
