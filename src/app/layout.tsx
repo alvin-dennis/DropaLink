@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Poppins } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import "@/app/globals.css";
@@ -10,14 +10,15 @@ export const metadata: Metadata = {
   description: "DropaLink - Private, one-time, and expiring links with full control.",
 };
 
-const inter = Inter({
-  variable: "--font-geist-sans",
-  display: "swap",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
 });
-
-const displayFont = Inter({
+const displayFont = Bricolage_Grotesque({
   variable: "--font-display",
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   display: "swap",
   subsets: ["latin"],
 });
@@ -27,15 +28,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${displayFont.variable}`}
+      className={`${poppins.variable} ${displayFont.variable}`}
     >
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen bg-background font-poppins antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <QueryProvider>
             <div className="relative flex min-h-screen flex-col">
               <main className="flex-1">{children}</main>
             </div>
-            <Toaster richColors position="top-center" />
+            <Toaster richColors position="top-center" theme="light" />
           </QueryProvider>
         </ThemeProvider>
       </body>

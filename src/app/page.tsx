@@ -2,10 +2,10 @@ import { ArrowUpRight, CheckCircle2, Crown, Shield, Sparkles, Timer } from "luci
 import Link from "next/link";
 import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
-import { LandingHero } from "@/components/landing/landing-hero";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { LandingHero } from "@/modules/home/Hero";
 
 const featureCards = [
   {
@@ -143,8 +143,8 @@ export default function Home() {
                 </Badge>
                 <h3 className="font-display text-3xl">Ready to share publicly or privately?</h3>
                 <p className="text-muted-foreground">
-                  Spin up your first link in under a minute. Keep every share tracked, expiring,
-                  and fully under your control.
+                  Spin up your first link in under a minute. Keep every share tracked, expiring, and
+                  fully under your control.
                 </p>
               </div>
               <div className="flex flex-col gap-3">

@@ -2,10 +2,10 @@ import { Crown } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
-import { ProfileMenu } from "@/components/dashboard/profile-menu";
 import { Badge } from "@/components/ui/badge";
 import { getProfileDisplayName, getProfileInitials } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
+import { ProfileMenu } from "@/modules/dashboard/profile-menu";
 
 export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
