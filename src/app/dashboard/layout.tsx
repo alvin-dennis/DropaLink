@@ -16,36 +16,36 @@ export default async function ProtectedLayout({ children }: { children: React.Re
 
   return (
     <main className="bg-dashboard min-h-screen">
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col">
-        <nav className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur">
-          <div className="flex h-16 w-full items-center justify-between px-6 text-sm">
-            <div className="flex items-center gap-3 font-semibold">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Crown className="h-4 w-4" />
-              </div>
-              <div className="flex items-center gap-3">
-                <Link href="/" className="font-display text-base">
-                  DropaLink
-                </Link>
-                <Badge variant="secondary" className="hidden md:inline-flex">
-                  Dashboard
-                </Badge>
-              </div>
+      <nav className="nav-shell">
+        <div className="nav-inner max-w-none">
+          <div className="flex items-center gap-3 font-semibold">
+            <div className="brand-mark h-9 w-9">
+              <Crown className="h-4 w-4" />
             </div>
-            {user ? (
-              <ProfileMenu name={profileName} email={user.email} initials={profileInitials} />
-            ) : (
-              <Suspense>
-                <AuthButton />
-              </Suspense>
-            )}
+            <div className="flex items-center gap-3">
+              <Link href="/" className="font-display text-base">
+                DropaLink
+              </Link>
+              <Badge variant="secondary" className="hidden md:inline-flex">
+                Dashboard
+              </Badge>
+            </div>
           </div>
-        </nav>
+          {user ? (
+            <ProfileMenu name={profileName} email={user.email} initials={profileInitials} />
+          ) : (
+            <Suspense>
+              <AuthButton />
+            </Suspense>
+          )}
+        </div>
+      </nav>
 
-        <div className="flex-1 px-6 pb-16 pt-10">{children}</div>
+      <div className="page-container flex min-h-screen flex-col">
+        <div className="flex-1 pb-16 pt-10">{children}</div>
 
         <footer className="border-t border-border/60">
-          <div className="flex flex-col gap-2 px-6 py-10 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-2 py-10 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
             <p>DropaLink Dashboard</p>
             <p>Private sharing with full control.</p>
           </div>

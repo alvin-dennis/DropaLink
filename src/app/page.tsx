@@ -44,10 +44,11 @@ export default function Home() {
   return (
     <main className="bg-landing">
       <div className="relative">
-        <nav className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur">
-          <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6 text-sm">
+        <div className="grid-rails" />
+        <nav className="nav-shell">
+          <div className="nav-inner max-w-none">
             <div className="flex items-center gap-3 font-semibold">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <div className="brand-mark h-9 w-9">
                 <Crown className="h-4 w-4" />
               </div>
               <Link href="/" className="font-display text-base">
@@ -60,12 +61,12 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 pb-24 pt-12">
+        <div className="page-container flex flex-col gap-16 pb-24 pt-12">
           <LandingHero />
 
           <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="space-y-4">
-              <Badge variant="secondary" className="w-fit">
+              <Badge variant="secondary" className="section-pill">
                 Built for teams who care
               </Badge>
               <h2 className="font-display text-3xl md:text-4xl">
@@ -110,7 +111,7 @@ export default function Home() {
           <section className="grid gap-6">
             <div className="flex items-center justify-between gap-6">
               <div>
-                <Badge variant="secondary" className="w-fit">
+                <Badge variant="secondary" className="section-pill">
                   Simple setup
                 </Badge>
                 <h2 className="font-display text-3xl md:text-4xl">Start in minutes.</h2>
@@ -137,7 +138,7 @@ export default function Home() {
           <section className="glass-panel rounded-[2rem] px-8 py-10 md:px-12">
             <div className="grid gap-6 md:grid-cols-[1.3fr_0.7fr] md:items-center">
               <div className="space-y-3">
-                <Badge className="w-fit" variant="secondary">
+                <Badge className="section-pill" variant="secondary">
                   Launch ready
                 </Badge>
                 <h3 className="font-display text-3xl">Ready to share with more control?</h3>
@@ -162,7 +163,7 @@ export default function Home() {
         </div>
 
         <footer className="border-t border-border/60">
-          <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <div className="page-container flex flex-col gap-4 py-10 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
             <span>DropaLink © 2026. Built for private sharing.</span>
             <div className="flex flex-wrap gap-4">
               <Link href="/auth/login" className="hover:text-foreground">

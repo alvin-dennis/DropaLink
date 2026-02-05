@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Geist } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import "@/app/globals.css";
@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   description: "DropaLink - Private, one-time, and expiring links with full control.",
 };
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--font-geist-sans",
   display: "swap",
   subsets: ["latin"],
 });
 
-const displayFont = Bricolage_Grotesque({
+const displayFont = Inter({
   variable: "--font-display",
   display: "swap",
   subsets: ["latin"],
@@ -27,15 +27,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${displayFont.variable}`}
+      className={`${inter.variable} ${displayFont.variable}`}
     >
       <body className="min-h-screen bg-background font-sans antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <QueryProvider>
             <div className="relative flex min-h-screen flex-col">
               <main className="flex-1">{children}</main>

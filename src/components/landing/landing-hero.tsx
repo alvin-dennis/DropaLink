@@ -24,7 +24,7 @@ const features = [
 
 export function LandingHero() {
   return (
-    <section className="relative overflow-hidden rounded-[2.5rem] border border-border/60 bg-card/70 p-8 md:p-12">
+    <section className="hero-panel">
       <div className="pointer-events-none absolute inset-0 grid-overlay opacity-70" />
       <div className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div className="space-y-6">
@@ -33,7 +33,7 @@ export function LandingHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Badge className="mb-4 w-fit" variant="secondary">
+            <Badge className="section-pill mb-4" variant="secondary">
               Private links, shared with intent
             </Badge>
             <h1 className="font-display text-4xl leading-tight md:text-5xl">
