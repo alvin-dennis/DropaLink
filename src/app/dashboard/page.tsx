@@ -33,11 +33,11 @@ export default async function ProtectedPage() {
             <div>
               <h1 className="font-display text-3xl md:text-4xl">Hi, {displayName}</h1>
               <p className="text-sm text-muted-foreground">
-                Here&apos;s what is happening with your active drops.
+                Here&apos;s what is happening with your active links.
               </p>
             </div>
             <Button asChild size="lg">
-              <Link href="/dashboard">Create new drop</Link>
+              <Link href="/dashboard">Create new link</Link>
             </Button>
           </div>
         </CardHeader>
@@ -54,7 +54,7 @@ export default async function ProtectedPage() {
           </Card>
           <Card className="glass-panel">
             <CardHeader className="flex flex-row items-center justify-between">
-              <CardTitle className="text-sm font-medium">Private views</CardTitle>
+              <CardTitle className="text-sm font-medium">Public + private views</CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
