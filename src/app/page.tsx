@@ -9,8 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const featureCards = [
   {
-    title: "One-time access",
-    description: "Limit a link to a single open. Perfect for sensitive docs.",
+    title: "Private or public",
+    description: "Choose visibility per link and switch anytime.",
     icon: Shield,
   },
   {
@@ -20,7 +20,7 @@ const featureCards = [
   },
   {
     title: "Smart controls",
-    description: "Revoke, pause, or extend links without sharing again.",
+    description: "Revoke, pause, or extend any link in seconds.",
     icon: Sparkles,
   },
 ];
@@ -32,7 +32,7 @@ const steps = [
   },
   {
     title: "Set the rules",
-    text: "Choose expiry, views, and alerts. Keep it as strict as you need.",
+    text: "Choose visibility, expiry, views, and alerts.",
   },
   {
     title: "Share with confidence",
@@ -70,11 +70,11 @@ export default function Home() {
                 Built for teams who care
               </Badge>
               <h2 className="font-display text-3xl md:text-4xl">
-                Security-first sharing that still feels effortless.
+                Public reach with private-grade control.
               </h2>
               <p className="text-muted-foreground">
-                DropaLink keeps collaboration fast while guarding every view. Give teammates the
-                right access without sacrificing speed.
+                Share links publicly or keep them private. DropaLink keeps collaboration fast while
+                guarding every view with clear controls and audit trails.
               </p>
               <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
@@ -83,7 +83,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Access revocation in seconds
+                  Public or private toggles
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 text-primary" />
@@ -141,10 +141,10 @@ export default function Home() {
                 <Badge className="section-pill" variant="secondary">
                   Launch ready
                 </Badge>
-                <h3 className="font-display text-3xl">Ready to share with more control?</h3>
+                <h3 className="font-display text-3xl">Ready to share publicly or privately?</h3>
                 <p className="text-muted-foreground">
-                  Spin up your first secure link in under a minute. Keep every share tracked,
-                  expiring, and entirely yours.
+                  Spin up your first link in under a minute. Keep every share tracked, expiring,
+                  and fully under your control.
                 </p>
               </div>
               <div className="flex flex-col gap-3">
@@ -164,7 +164,7 @@ export default function Home() {
 
         <footer className="border-t border-border/60">
           <div className="page-container flex flex-col gap-4 py-10 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-            <span>DropaLink © 2026. Built for private sharing.</span>
+            <span>DropaLink © 2026. Built for public and private sharing.</span>
             <div className="flex flex-wrap gap-4">
               <Link href="/auth/login" className="hover:text-foreground">
                 Sign in

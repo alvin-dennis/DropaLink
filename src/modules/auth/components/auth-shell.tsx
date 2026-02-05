@@ -22,14 +22,15 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
               </Badge>
               <h1 className="font-display text-3xl">Give access on your terms.</h1>
               <p className="text-sm text-muted-foreground">
-                Build private links that expire, lock after one view, or stay open for your team.
+                Build public or private links that expire, lock after one view, or stay open for
+                your team.
               </p>
             </div>
           </div>
           <div className="space-y-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              One-time access controls
+              Public and private modes
             </div>
             <div className="flex items-center gap-3">
               <Sparkles className="h-4 w-4 text-primary" />

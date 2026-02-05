@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 
 const stats = [
   { label: "Avg. time-to-share", value: "14s" },
+  { label: "Public + private", value: "Both modes" },
   { label: "Link expiry control", value: "1 click" },
-  { label: "Private by default", value: "100%" },
 ];
 
 const features = [
@@ -19,7 +19,11 @@ const features = [
     title: "Auto-expire",
     text: "Set minutes, hours, or days with no manual cleanup.",
   },
-  { icon: Zap, title: "Instant revoke", text: "Kill a link immediately with a single toggle." },
+  {
+    icon: Zap,
+    title: "Public sharing",
+    text: "Turn any link public with optional limits and analytics.",
+  },
 ];
 
 export function LandingHero() {
@@ -34,7 +38,7 @@ export function LandingHero() {
             transition={{ duration: 0.6 }}
           >
             <Badge className="section-pill mb-4" variant="secondary">
-              Private links, shared with intent
+              Public or private, always controlled
             </Badge>
             <h1 className="font-display text-4xl leading-tight md:text-5xl">
               Drop a link. Keep the control.
@@ -48,8 +52,8 @@ export function LandingHero() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="text-base text-muted-foreground md:text-lg"
           >
-            DropaLink lets you create private, one-time, and expiring links so you decide how long
-            your content lives and who gets to see it.
+            DropaLink supports both public and private links, with expiry, view limits, and instant
+            revocation so you decide how long content lives and who can access it.
           </motion.p>
 
           <motion.div
