@@ -5,7 +5,7 @@ import { AuthButton } from "@/components/auth-button";
 import { Badge } from "@/components/ui/badge";
 import { getProfileDisplayName, getProfileInitials } from "@/lib/profile";
 import { createClient } from "@/lib/supabase/server";
-import { ProfileMenu } from "@/modules/dashboard/profile-menu";
+import { ProfileMenu } from "@/modules/dashboard/components/profile-menu";
 
 export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();

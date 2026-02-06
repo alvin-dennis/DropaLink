@@ -1,7 +1,8 @@
 "use client";
 
-import { ChevronDown, LogOut, User } from "lucide-react";
+import { ChevronDown, User } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { createClient } from "@/lib/supabase/client";
 
 interface ProfileMenuProps {
   name: string;
@@ -21,13 +21,6 @@ interface ProfileMenuProps {
 
 export function ProfileMenu({ name, email, initials }: ProfileMenuProps) {
   const router = useRouter();
-
-  const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push("/auth/login");
-  };
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,14 +42,8 @@ export function ProfileMenu({ name, email, initials }: ProfileMenuProps) {
           Overview
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onSelect={(event) => {
-            event.preventDefault();
-            handleLogout();
-          }}
-        >
-          <LogOut className="h-4 w-4" />
-          Sign out
+        <DropdownMenuItem>
+          <LogoutButton />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

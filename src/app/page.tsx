@@ -1,44 +1,12 @@
-import { ArrowUpRight, CheckCircle2, Crown, Shield, Sparkles, Timer } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Crown } from "lucide-react";
 import Link from "next/link";
 import { Suspense } from "react";
 import { AuthButton } from "@/components/auth-button";
+import { MotionDiv, MotionP } from "@/components/framer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LandingHero } from "@/modules/home/Hero";
-
-const featureCards = [
-  {
-    title: "Private or public",
-    description: "Choose visibility per link and switch anytime.",
-    icon: Shield,
-  },
-  {
-    title: "Timed expiration",
-    description: "Choose exact expiration windows with automatic cleanup.",
-    icon: Timer,
-  },
-  {
-    title: "Smart controls",
-    description: "Revoke, pause, or extend any link in seconds.",
-    icon: Sparkles,
-  },
-];
-
-const steps = [
-  {
-    title: "Drop your content",
-    text: "Paste a URL, add a file, or connect a workspace destination.",
-  },
-  {
-    title: "Set the rules",
-    text: "Choose visibility, expiry, views, and alerts.",
-  },
-  {
-    title: "Share with confidence",
-    text: "Track views, revoke instantly, and stay in control.",
-  },
-];
+import { hero } from "@/lib/data";
 
 export default function Home() {
   return (
@@ -62,7 +30,90 @@ export default function Home() {
         </nav>
 
         <div className="page-container flex flex-col gap-16 pb-24 pt-12">
-          <LandingHero />
+          <section className="hero-panel">
+            <div className="pointer-events-none absolute inset-0 grid-overlay opacity-70" />
+            <div className="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div className="space-y-6">
+                <MotionDiv
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Badge className="section-pill mb-4" variant="secondary">
+                    Public or private, always controlled
+                  </Badge>
+                  <h1 className="font-display text-4xl leading-tight md:text-5xl">
+                    Drop a link. Keep the control.
+                    <span className="block text-gradient">Every share stays yours.</span>
+                  </h1>
+                </MotionDiv>
+
+                <MotionP
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.08 }}
+                  className="text-base text-muted-foreground md:text-lg"
+                >
+                  DropaLink supports both public and private links, with expiry, view limits, and
+                  instant revocation so you decide how long content lives and who can access it.
+                </MotionP>
+
+                <MotionDiv
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.16 }}
+                  className="flex flex-wrap gap-3"
+                >
+                  <Button asChild size="lg" className="gap-2">
+                    <Link href="/auth/sign-up">
+                      Create your first drop
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <Link href="/dashboard">View dashboard</Link>
+                  </Button>
+                </MotionDiv>
+
+                <div className="grid gap-4 pt-2 md:grid-cols-3">
+                  {hero.stats.map((stat, index) => (
+                    <MotionDiv
+                      key={stat.label}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.2 + index * 0.08 }}
+                      className="glass-panel rounded-2xl px-4 py-3"
+                    >
+                      <p className="text-xs uppercase tracking-wide text-muted-foreground">
+                        {stat.label}
+                      </p>
+                      <p className="text-lg font-semibold">{stat.value}</p>
+                    </MotionDiv>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-4">
+                {hero.features.map((feature, index) => (
+                  <MotionDiv
+                    key={feature.title}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 + index * 0.08 }}
+                    className="glass-panel flex items-start gap-4 rounded-2xl p-5"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <feature.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">{feature.title}</h3>
+                      <p className="text-sm text-muted-foreground">{feature.text}</p>
+                    </div>
+                  </MotionDiv>
+                ))}
+              </div>
+            </div>
+          </section>
 
           <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="space-y-4">
@@ -92,7 +143,7 @@ export default function Home() {
               </div>
             </div>
             <div className="grid gap-4">
-              {featureCards.map((feature) => (
+              {hero.featureCards.map((feature) => (
                 <Card key={feature.title} className="glass-panel">
                   <CardHeader className="flex flex-row items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -121,7 +172,7 @@ export default function Home() {
               </Button>
             </div>
             <div className="grid gap-4 md:grid-cols-3">
-              {steps.map((step, index) => (
+              {hero.steps.map((step, index) => (
                 <Card key={step.title} className="glass-panel">
                   <CardHeader>
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">

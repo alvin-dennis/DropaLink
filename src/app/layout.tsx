@@ -7,7 +7,7 @@ import { QueryProvider } from "@/components/providers/query-provider";
 
 export const metadata: Metadata = {
   title: "Dropalink",
-  description: "DropaLink - Private, one-time, and expiring links with full control.",
+  description: "DropaLink - Public, private, one-time, and expiring links with full control.",
 };
 
 const poppins = Poppins({
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${poppins.variable} ${displayFont.variable}`}
     >
-      <body className="min-h-screen bg-background font-poppins antialiased">
+      <body className="min-h-screen bg-background text-primary font-poppins antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <QueryProvider>
             <div className="relative flex min-h-screen flex-col">
