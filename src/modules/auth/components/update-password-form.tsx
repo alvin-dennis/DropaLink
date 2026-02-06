@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUpdatePassword } from "../hooks/use-update-password";
 import { type UpdatePasswordValues, updatePasswordSchema } from "../schemas/auth.schema";
-import { AuthErrorMessage } from "./auth-error-message";
 
 export function UpdatePasswordForm() {
   const updatePasswordMutation = useUpdatePassword();
@@ -38,6 +37,10 @@ export function UpdatePasswordForm() {
     });
   };
 
+  if (updatePasswordMutation.error) {
+    throw updatePasswordMutation.error;
+  }
+
   return (
     <Card className="glass-panel">
       <CardHeader className="space-y-2">
@@ -45,8 +48,6 @@ export function UpdatePasswordForm() {
         <CardDescription>Make it strong and unique to keep your links safe.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <AuthErrorMessage error={updatePasswordMutation.error} />
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
