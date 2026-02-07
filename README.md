@@ -143,16 +143,6 @@ chore: update dependencies
 
 ---
 
-### Environment for Production
-
-```env
-NODE_ENV=production
-NEXT_PUBLIC_SUPABASE_URL=your-project-url
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-or-anon-key
-```
-
----
-
 ## 🤝 Contributing
 
 ### Workflow
@@ -180,23 +170,6 @@ bun typecheck
 
 # Build test
 bun build
-```
-
-### Commit Convention
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-```
-type(scope): subject
-
-feat(menu): add digital menu feature
-fix(api): resolve timeout issue
-docs: update installation guide
-style: format code
-refactor(hooks): extract logic
-perf: optimize images
-test(form): add validation tests
-chore(deps): update dependencies
 ```
 
 ---
