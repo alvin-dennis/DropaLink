@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400"],
   display: "swap",
 });
 const displayFont = Bricolage_Grotesque({
   variable: "--font-display",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["600"],
   display: "swap",
   subsets: ["latin"],
 });

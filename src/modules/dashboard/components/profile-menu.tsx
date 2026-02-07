@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, User } from "lucide-react";
+import { ChevronDown, Settings, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,10 @@ export function ProfileMenu({ name, email, initials }: ProfileMenuProps) {
         <DropdownMenuItem onSelect={() => router.push("/dashboard")}>
           <User className="h-4 w-4" />
           Overview
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => router.push("/dashboard/settings")}>
+          <Settings className="h-4 w-4" />
+          Settings
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
