@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { useSignup } from "../hooks/use-signup";
 import { type SignupValues, signupSchema } from "../schemas/auth.schema";
-import { AuthErrorMessage } from "./auth-error-message";
 import { GoogleButton } from "./google-button";
 
 export function SignupForm() {
@@ -35,6 +34,10 @@ export function SignupForm() {
     signupMutation.mutate(data);
   };
 
+  if (signupMutation.error) {
+    throw signupMutation.error;
+  }
+
   return (
     <Card className="glass-panel">
       <CardHeader className="space-y-2">
@@ -42,8 +45,6 @@ export function SignupForm() {
         <CardDescription>Start sharing secure links in minutes.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <AuthErrorMessage error={signupMutation.error} />
-
         {signupMutation.isSuccess ? (
           <div className="rounded-xl border border-border/60 bg-secondary/60 p-4 text-center text-sm text-foreground">
             Registration successful! Please check your email to confirm your account.

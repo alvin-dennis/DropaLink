@@ -17,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { useLogin } from "../hooks/use-login";
 import { type LoginValues, loginSchema } from "../schemas/auth.schema";
-import { AuthErrorMessage } from "./auth-error-message";
 import { GoogleButton } from "./google-button";
 
 export function LoginForm() {
@@ -40,6 +39,10 @@ export function LoginForm() {
     });
   };
 
+  if (loginMutation.error) {
+    throw loginMutation.error;
+  }
+
   return (
     <Card className="glass-panel">
       <CardHeader className="space-y-2">
@@ -47,8 +50,6 @@ export function LoginForm() {
         <CardDescription>Sign in to manage your secure links.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <AuthErrorMessage error={loginMutation.error} />
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField

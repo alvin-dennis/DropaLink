@@ -16,7 +16,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { useResetPassword } from "../hooks/use-reset-password";
 import { type ForgotPasswordValues, forgotPasswordSchema } from "../schemas/auth.schema";
-import { AuthErrorMessage } from "./auth-error-message";
 
 export function ForgotPasswordForm() {
   const resetPasswordMutation = useResetPassword();
@@ -32,6 +31,10 @@ export function ForgotPasswordForm() {
     resetPasswordMutation.mutate(data);
   };
 
+  if (resetPasswordMutation.error) {
+    throw resetPasswordMutation.error;
+  }
+
   return (
     <Card className="glass-panel">
       <CardHeader className="space-y-2">
@@ -39,8 +42,6 @@ export function ForgotPasswordForm() {
         <CardDescription>We will send you a secure reset link.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <AuthErrorMessage error={resetPasswordMutation.error} />
-
         {resetPasswordMutation.isSuccess ? (
           <div className="rounded-xl border border-border/60 bg-secondary/60 p-4 text-center text-sm text-foreground">
             Check your email for the password reset link.
