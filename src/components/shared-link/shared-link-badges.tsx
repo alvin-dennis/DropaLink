@@ -6,27 +6,28 @@ interface SharedLinkBadgesProps {
   totalLinks: string;
 }
 
-export function SharedLinkBadges({ privacyStatus, expiryDate, totalLinks }: SharedLinkBadgesProps) {
+export function SharedLinkBadges({ 
+  privacyStatus, 
+  expiryDate, 
+  totalLinks,
+  variant = "public" 
+}: SharedLinkBadgesProps & { variant?: "public" | "private" }) {
+  const isPrivate = variant === "private";
+  const pillClass = isPrivate 
+    ? "inline-flex items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/[0.03] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-rose-600/80 shadow-sm backdrop-blur-md transition-all"
+    : "section-pill transition-all";
+
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2">
-      <Badge
-        variant="outline"
-        className="rounded-[4px] border-border px-3 py-1 text-[11px] font-medium normal-case tracking-normal"
-      >
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className={pillClass}>
         Privacy: {privacyStatus}
-      </Badge>
-      <Badge
-        variant="outline"
-        className="rounded-[4px] border-border px-3 py-1 text-[11px] font-medium normal-case tracking-normal"
-      >
+      </div>
+      <div className={pillClass}>
         Expires: {expiryDate}
-      </Badge>
-      <Badge
-        variant="outline"
-        className="rounded-[4px] border-border px-3 py-1 text-[11px] font-medium normal-case tracking-normal"
-      >
+      </div>
+      <div className={pillClass}>
         Total Links: {totalLinks}
-      </Badge>
+      </div>
     </div>
   );
 }

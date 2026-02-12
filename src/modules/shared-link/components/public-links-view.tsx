@@ -11,19 +11,26 @@ interface PublicLinksViewProps {
 
 export function PublicLinksView({ collection }: PublicLinksViewProps) {
   return (
-    <SharedLinkShell footer={<SharedLinkFooter appName="DropaLink" />}>
-      <SharedLinkHeader sharedBy={collection.sharedBy} />
+    <SharedLinkShell variant="public" footer={<SharedLinkFooter appName="DropaLink" />}>
+      <SharedLinkHeader variant="public" sharedBy={collection.sharedBy} />
 
-      <section className="space-y-5 text-center">
-        <h1 className="text-4xl font-black leading-tight text-primary">{collection.title}</h1>
-        <p className="mx-auto max-w-xl whitespace-pre-line text-sm text-muted-foreground">
-          {collection.description}
-        </p>
-        <SharedLinkBadges
-          privacyStatus="Public"
-          expiryDate={collection.expiryDate}
-          totalLinks={String(collection.links.length)}
-        />
+      <section className="space-y-6 text-center">
+        <div className="space-y-4">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-primary">
+            {collection.title}
+          </h1>
+          <p className="mx-auto max-w-lg whitespace-pre-line text-lg leading-relaxed text-muted-foreground/80">
+            {collection.description}
+          </p>
+        </div>
+        <div className="mt-4">
+          <SharedLinkBadges
+            variant="public"
+            privacyStatus="Public"
+            expiryDate={collection.expiryDate}
+            totalLinks={String(collection.links.length)}
+          />
+        </div>
       </section>
 
       <section className="space-y-3" aria-label="Shared links">

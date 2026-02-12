@@ -10,23 +10,25 @@ interface SharedLinkCardProps {
 
 export function SharedLinkCard({ title, description, href }: SharedLinkCardProps) {
   return (
-    <article className="flex items-center gap-4 rounded-[4px] border border-border bg-card px-4 py-4">
-      <div className="flex h-9 w-9 items-center justify-center rounded-[4px] border border-border bg-background text-muted-foreground">
-        <Globe className="h-4 w-4" />
+    <article className="group relative flex items-center gap-6 rounded-[2rem] border border-border/40 bg-card/60 p-6 transition-all duration-500 hover:-translate-y-2 hover:border-primary/30 hover:bg-card hover:shadow-2xl hover:shadow-primary/10 hover:ring-4 hover:ring-primary/5 backdrop-blur-sm">
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-primary/10 bg-primary/10 text-primary shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:border-primary/30 group-hover:bg-primary/20">
+        <Globe className="h-6 w-6" />
       </div>
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold text-foreground">{title}</p>
-        <p className="truncate text-xs text-muted-foreground">{description}</p>
+      <div className="min-w-0 flex-1 space-y-1.5">
+        <h3 className="truncate text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+          {title}
+        </h3>
+        <p className="truncate text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors">
+          {description}
+        </p>
       </div>
       <Button
         asChild
-        variant="outline"
-        size="sm"
-        className="h-8 rounded-[4px] border-border px-3 text-xs shadow-none transition-none hover:translate-y-0 hover:bg-secondary/60 hover:text-foreground active:translate-y-0"
+        className="h-12 rounded-[1.25rem] bg-primary px-6 text-sm font-bold text-white shadow-xl hover:bg-black hover:scale-105 active:scale-95 transition-all duration-300"
       >
         <Link href={href} target="_blank" rel="noreferrer">
           Visit
-          <ArrowRight className="h-3 w-3" />
+          <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </Button>
     </article>
