@@ -9,14 +9,20 @@ function getInitials(name: string) {
   return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
 }
 
-export function SharedLinkHeader({ sharedBy, variant = "public" }: { sharedBy: string; variant?: "public" | "private" }) {
+export function SharedLinkHeader({
+  sharedBy,
+  variant = "public",
+}: {
+  sharedBy: string;
+  variant?: "public" | "private";
+}) {
   const isPrivate = variant === "private";
 
   return (
     <header className="flex flex-col items-center justify-center gap-4">
-      <div 
+      <div
         className={`brand-mark flex h-14 w-14 items-center justify-center rounded-2xl text-base font-bold shadow-2xl transition-all duration-500 ${
-          isPrivate ? "ring-4 ring-rose-500/10 shadow-rose-500/5" : "ring-4 ring-blue-500/10 shadow-blue-500/5"
+          isPrivate ? "shared-link-header-mark-private" : "shared-link-header-mark-public"
         }`}
       >
         {getInitials(sharedBy)}

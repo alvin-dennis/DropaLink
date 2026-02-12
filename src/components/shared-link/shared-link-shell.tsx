@@ -13,15 +13,17 @@ export function SharedLinkShell({ children, footer, variant = "public" }: Shared
     <main className="relative min-h-screen bg-landing px-4 py-8 overflow-hidden">
       {/* Background Decorations */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div 
+        <div
           className={`absolute -top-[10%] -left-[10%] h-[40%] w-[40%] rounded-full blur-[120px] opacity-40 transition-colors duration-1000 ${
-            isPublic ? "bg-blue-400/30" : "bg-rose-400/20"
-          }`} 
+            isPublic ? "shared-link-shell-glow-top-public" : "shared-link-shell-glow-top-private"
+          }`}
         />
-        <div 
+        <div
           className={`absolute -bottom-[10%] -right-[10%] h-[40%] w-[40%] rounded-full blur-[120px] opacity-40 transition-colors duration-1000 ${
-            isPublic ? "bg-indigo-400/20" : "bg-amber-400/20"
-          }`} 
+            isPublic
+              ? "shared-link-shell-glow-bottom-public"
+              : "shared-link-shell-glow-bottom-private"
+          }`}
         />
         <div className="grid-overlay pointer-events-none absolute inset-0 opacity-40" />
       </div>

@@ -224,4 +224,75 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 0;
     pointer-events: none;
   }
+
+  .shared-link-shell-glow-top-public {
+    @apply bg-blue-400/30;
+  }
+
+  .shared-link-shell-glow-top-private {
+    @apply bg-rose-400/20;
+  }
+
+  .shared-link-shell-glow-bottom-public {
+    @apply bg-indigo-400/20;
+  }
+
+  .shared-link-shell-glow-bottom-private {
+    @apply bg-amber-400/20;
+  }
+
+  .shared-link-header-mark-public {
+    @apply ring-4 ring-blue-500/10 shadow-blue-500/5;
+  }
+
+  .shared-link-header-mark-private {
+    @apply ring-4 ring-rose-500/10 shadow-rose-500/5;
+  }
+
+  .shared-link-badge-private {
+    @apply inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md transition-all;
+    border-color: rgb(244 63 94 / 0.2);
+    background-color: rgb(244 63 94 / 0.03);
+    color: rgb(225 29 72 / 0.8);
+  }
+
+  .shared-link-vault-pill {
+    @apply mx-auto mb-2 flex w-fit items-center gap-2 rounded-full border px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] ring-1;
+    border-color: rgb(244 63 94 / 0.2);
+    background-color: rgb(244 63 94 / 0.1);
+    color: rgb(225 29 72);
+    --tw-ring-color: rgb(244 63 94 / 0.1);
+  }
+
+  .shared-link-card-public {
+    @apply hover:border-primary/30 hover:shadow-primary/10 hover:ring-primary/5;
+  }
+
+  .shared-link-card-private {
+    @apply hover:border-rose-500/30 hover:shadow-rose-500/10 hover:ring-rose-500/5;
+  }
+
+  .shared-link-card-icon-public {
+    @apply border border-primary/10 bg-primary/10 text-primary group-hover:border-primary/30 group-hover:bg-primary/20;
+  }
+
+  .shared-link-card-icon-private {
+    @apply border border-rose-500/10 bg-rose-500/5 text-rose-500 group-hover:border-rose-500/30 group-hover:bg-rose-500/10;
+  }
+
+  .shared-link-card-title-public {
+    @apply group-hover:text-primary;
+  }
+
+  .shared-link-card-title-private {
+    @apply group-hover:text-rose-600;
+  }
+
+  .shared-link-card-button-public {
+    @apply bg-primary hover:bg-black;
+  }
+
+  .shared-link-card-button-private {
+    @apply bg-rose-600 hover:bg-rose-500;
+  }
 }
