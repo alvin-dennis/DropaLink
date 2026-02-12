@@ -53,6 +53,10 @@
   --glow-2: rgb(15 23 42 / 0.12);
   --glow-3: rgb(241 245 249 / 0.85);
   --grid-line: rgb(24 24 27 / 0.08);
+  --public-accent: #2563eb;
+  --public-light: #dbeafe;
+  --private-accent: #e11d48;
+  --private-light: #fce7f3;
   --background: var(--surface-1);
   --foreground: var(--ink-1);
   --card: var(--surface-3);
@@ -223,5 +227,161 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.6;
     z-index: 0;
     pointer-events: none;
+  }
+
+  .shared-link-shell-glow-top-public {
+    @apply bg-blue-400/30;
+  }
+
+  .shared-link-shell-glow-top-private {
+    @apply bg-rose-400/20;
+  }
+
+  .shared-link-shell-glow-bottom-public {
+    @apply bg-indigo-400/20;
+  }
+
+  .shared-link-shell-glow-bottom-private {
+    @apply bg-amber-400/20;
+  }
+
+  .shared-link-header-mark-public {
+    @apply ring-4 ring-blue-500/10 shadow-blue-500/5;
+  }
+
+  .shared-link-header-mark-private {
+    @apply ring-4 ring-rose-500/10 shadow-rose-500/5;
+  }
+
+  .shared-link-badge-private {
+    @apply inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md transition-all;
+    border-color: rgb(244 63 94 / 0.2);
+    background-color: rgb(244 63 94 / 0.03);
+    color: rgb(225 29 72 / 0.8);
+  }
+
+  .shared-link-vault-pill {
+    @apply mx-auto mb-2 flex w-fit items-center gap-2 rounded-full border px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] ring-1;
+    border-color: rgb(244 63 94 / 0.2);
+    background-color: rgb(244 63 94 / 0.1);
+    color: rgb(225 29 72);
+    --tw-ring-color: rgb(244 63 94 / 0.1);
+  }
+
+  .shared-link-card-public {
+    @apply hover:border-primary/30 hover:shadow-primary/10 hover:ring-primary/5;
+  }
+
+  .shared-link-card-private {
+    @apply hover:border-rose-500/30 hover:shadow-rose-500/10 hover:ring-rose-500/5;
+  }
+
+  .shared-link-card-icon-public {
+    @apply border border-primary/10 bg-primary/10 text-primary group-hover:border-primary/30 group-hover:bg-primary/20;
+  }
+
+  .shared-link-card-icon-private {
+    @apply border border-rose-500/10 bg-rose-500/5 text-rose-500 group-hover:border-rose-500/30 group-hover:bg-rose-500/10;
+  }
+
+  .shared-link-card-title-public {
+    @apply group-hover:text-primary;
+  }
+
+  .shared-link-card-title-private {
+    @apply group-hover:text-rose-600;
+  }
+
+  .shared-link-card-button-public {
+    @apply bg-primary hover:bg-black;
+  }
+
+  .shared-link-card-button-private {
+    @apply bg-rose-600 hover:bg-rose-500;
+  }
+
+  /* Enhanced backgrounds for shared link views */
+  .bg-shared-link-view-public {
+    @apply relative bg-background;
+    background-image: 
+      linear-gradient(0deg, transparent 24%, rgb(var(--public-accent) / 0.05) 25%, rgb(var(--public-accent) / 0.05) 26%, transparent 27%, transparent 74%, rgb(var(--public-accent) / 0.05) 75%, rgb(var(--public-accent) / 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgb(var(--public-accent) / 0.05) 25%, rgb(var(--public-accent) / 0.05) 26%, transparent 27%, transparent 74%, rgb(var(--public-accent) / 0.05) 75%, rgb(var(--public-accent) / 0.05) 76%, transparent 77%, transparent);
+    background-size: 80px 80px;
+    background-position: 0 0;
+  }
+
+  .bg-shared-link-view-private {
+    @apply relative bg-background;
+    background-image: 
+      radial-gradient(circle, rgb(225 29 72 / 0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: 0 0;
+  }
+
+  /* Decorative grid patterns */
+  .grid-pattern-public {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgb(37 99 235 / 0.08) 1px, transparent 1px),
+      linear-gradient(0deg, rgb(37 99 235 / 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .grid-pattern-private {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(90deg, rgb(225 29 72 / 0.09) 1px, transparent 1px),
+      linear-gradient(0deg, rgb(225 29 72 / 0.09) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* Animated background layers */
+  @keyframes float-up {
+    0%, 100% {
+      transform: translateY(0px);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.3;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes float-around {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(20px, -20px);
+    }
+    50% {
+      transform: translate(0, -40px);
+    }
+    75% {
+      transform: translate(-20px, -20px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  .animated-blur-public {
+    animation: float-around 20s ease-in-out infinite;
+  }
+
+  .animated-blur-private {
+    animation: float-around 25s ease-in-out infinite reverse;
   }
 }
